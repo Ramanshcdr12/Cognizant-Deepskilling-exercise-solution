@@ -1,6 +1,6 @@
 📌 Overview
 
-This repository contains my solutions for the Cognizant Digital Nurture 5.0 (DN 5.0) Deep Skilling Program – Java FSE React Track. The repository includes hands-on exercises, coding assignments, and practical implementations completed as part of the learning journey.
+This repository contains my WEEK wise solutions for the Cognizant Digital Nurture 5.0 (DN 5.0) Deep Skilling Program – Java FSE React Track. The repository includes hands-on exercises, coding assignments, and practical implementations completed as part of the learning journey.
 
 The program covers:
 
@@ -42,11 +42,6 @@ Practice and implement concepts learned during DN 5.0 Deep Skilling.
 Maintain organized week-wise solutions.
 Demonstrate problem-solving and software development skills.
 Track learning progress throughout the program.
-▶️ Running the Projects
-Clone Repository
-git clone https://github.com/your-username/Digital-Nurture-5.0-DeepSkilling-Solutions.git
-Navigate to Project
-cd project-folder
 Build Maven Project
 mvn clean install
 Run Application
