@@ -34,3 +34,18 @@ Run the services in the following order:
 Navigate to `eureka-server` and run:
 ```bash
 mvn spring-boot:run
+2. Start the Backend Microservices
+Open separate terminals for each directory and run mvn spring-boot:run:
+
+Greet Service: cd greet-service && mvn spring-boot:run
+Account Service: cd account-service && mvn spring-boot:run
+Loan Service: cd loan-service && mvn spring-boot:run
+Refresh http://localhost:8761 to ensure all services show up as UP.
+
+3. Start the API Gateway
+Navigate to api-gateway and run:
+
+bash
+
+
+mvn spring-boot:run
