@@ -1,0 +1,14 @@
+<div class="app-layout">
+  <!-- Global Loading Spinner Overlay -->
+  <div *ngIf="loadingService.isLoading$ | async" class="global-spinner-overlay">
+    <div class="spinner-container">
+      <div class="global-spinner"></div>
+      <p class="spinner-text">Processing Academic Request...</p>
+    </div>
+  </div>
+
+  <app-header></app-header>
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

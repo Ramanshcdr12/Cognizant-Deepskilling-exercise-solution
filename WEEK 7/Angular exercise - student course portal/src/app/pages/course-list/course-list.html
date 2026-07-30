@@ -1,0 +1,70 @@
+<div class="course-list-container">
+  <header class="list-header">
+    <h2 class="list-title">Explore Courses</h2>
+    <p class="list-subtitle">Browse through available subjects, check your grade statuses, and enroll instantly.</p>
+  </header>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    <span class="alert-icon">⚠️</span>
+    <div class="alert-content">
+      <h4>Failed to Load Courses</h4>
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+
+  <!-- Search Filter -->
+  <div class="search-filter-container">
+    <input 
+      type="text" 
+      [(ngModel)]="searchTerm" 
+      (input)="onSearchChange()" 
+      placeholder="Search courses by name or code..." 
+      class="form-control list-search"
+    />
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-state">
+    <div class="spinner"></div>
+    <p>Loading courses...</p>
+  </div>
+
+  <!-- Main Content -->
+  <div *ngIf="!isLoading && !errorMessage">
+    <div class="list-layout">
+      
+      <div class="list-main">
+        <div *ngIf="filteredCourses.length > 0; else noCourses" class="course-grid">
+          <app-course-card 
+            *ngFor="let c of filteredCourses; trackBy: trackByCourseId" 
+            [course]="c" 
+            (enrollRequested)="onEnroll($event)"
+            (click)="onCardClick(c.id)"
+            class="clickable-card"
+          ></app-course-card>
+        </div>
+        
+        <!-- Empty State Template -->
+        <ng-template #noCourses>
+          <div class="empty-state">
+            <div class="empty-icon">📂</div>
+            <p class="empty-text">No courses match your search criteria.</p>
+          </div>
+        </ng-template>
+      </div>
+
+      <!-- Sidebar with Summary Widget -->
+      <aside class="list-sidebar">
+        <app-course-summary-widget></app-course-summary-widget>
+      </aside>
+
+    </div>
+
+    <!-- Selected Course Information -->
+    <div *ngIf="selectedCourseId" class="selection-footer">
+      <span class="selection-icon">🔔</span>
+      <p class="selected-info">Selected course ID: <strong>{{ selectedCourseId }}</strong></p>
+    </div>
+  </div>
+</div>

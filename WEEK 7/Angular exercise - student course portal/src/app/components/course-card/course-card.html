@@ -1,0 +1,54 @@
+<div 
+  class="course-card" 
+  [ngClass]="cardClasses" 
+  [appHighlight]="appHighlight"
+  [ngStyle]="{ 'border-left': '6px solid ' + (
+    course.gradeStatus === 'passed' ? '#10b981' : 
+    course.gradeStatus === 'failed' ? '#ef4444' : '#64748b'
+  )}"
+>
+  <div class="card-header">
+    <span class="course-code">{{ course.code }}</span>
+    
+    <!-- Grade Status Badge using modern Angular @switch control flow -->
+    @switch (course.gradeStatus) {
+      @case ('passed') {
+        <span class="badge badge-passed">Passed</span>
+      }
+      @case ('failed') {
+        <span class="badge badge-failed">Failed</span>
+      }
+      @default {
+        <span class="badge badge-pending">Pending</span>
+      }
+    }
+  </div>
+
+  <div class="card-body">
+    <h3 class="course-name">{{ course.name }}</h3>
+    <p class="course-credits">{{ course.credits | creditLabel }}</p>
+  </div>
+
+  <!-- Expandable Detail Section -->
+  @if (isExpanded) {
+    <div class="card-details">
+      <hr class="divider">
+      <p class="details-text">
+        This course covers fundamental concepts and practical projects to build strong industry skills.
+      </p>
+      <div class="details-meta">
+        <span><strong>Status:</strong> {{ course.gradeStatus | uppercase }}</span>
+        <span><strong>ID:</strong> #{{ course.id }}</span>
+      </div>
+    </div>
+  }
+
+  <div class="card-footer">
+    <button class="btn-action btn-secondary" (click)="toggleExpand(); $event.stopPropagation()">
+      {{ isExpanded ? 'Hide Details' : 'Show Details' }}
+    </button>
+    <button class="btn-action btn-primary" (click)="onEnrollToggle(); $event.stopPropagation()">
+      {{ enrolled ? 'Unenroll' : 'Enroll' }}
+    </button>
+  </div>
+</div>

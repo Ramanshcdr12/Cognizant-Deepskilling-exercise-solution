@@ -1,0 +1,31 @@
+<div class="notification-widget">
+  <div class="widget-header">
+    <span class="bell-icon">🔔</span>
+    <h4>Notification Center (Isolated Scope)</h4>
+  </div>
+
+  <div class="notification-input-group">
+    <input 
+      type="text" 
+      [(ngModel)]="newMsg" 
+      placeholder="Type a notification message..." 
+      class="msg-input"
+      (keyup.enter)="sendNotification()"
+    />
+    <button (click)="sendNotification()" class="btn-send">Send</button>
+  </div>
+
+  <div class="notification-list">
+    <div *ngIf="list.length === 0" class="empty-list">
+      No active notifications.
+    </div>
+    <div *ngFor="let note of list; let i = index" class="notification-item">
+      <span class="note-bullet">•</span>
+      <span class="note-text">{{ note }}</span>
+    </div>
+  </div>
+
+  <button *ngIf="list.length > 0" (click)="clearAll()" class="btn-clear">
+    Clear All
+  </button>
+</div>

@@ -1,0 +1,75 @@
+<div class="profile-container">
+  <div class="profile-header">
+    <div class="avatar">👨‍🎓</div>
+    <div class="profile-title">
+      <h2>{{ student.name }}'s Academic Profile</h2>
+      <p>{{ student.major }} | ID: {{ student.id }}</p>
+    </div>
+  </div>
+
+  <div class="profile-layout">
+    <!-- Info Card -->
+    <div class="info-card">
+      <h3>Personal Details</h3>
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="info-label">Full Name</span>
+          <span class="info-value">{{ student.name }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">College Email</span>
+          <span class="info-value">{{ student.email }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Current GPA</span>
+          <span class="info-value gpa-highlight">{{ student.gpa }} / 4.0</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Status</span>
+          <span class="info-value status-active">Active</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Enrolled Courses Card -->
+    <div class="enrolled-card">
+      <h3>My Enrolled Courses</h3>
+      
+      <div *ngIf="(enrolledCourses$ | async) as courses; else noEnrolled">
+        <div *ngIf="courses.length > 0; else noEnrolled" class="course-list">
+          <div *ngFor="let course of courses" class="course-item">
+            <div class="course-info">
+              <span class="course-code">{{ course.code }}</span>
+              <h4 class="course-name">{{ course.name }}</h4>
+              <span class="course-credits">{{ course.credits }} Credits</span>
+            </div>
+            <button class="btn-unenroll" (click)="unenroll(course.id)">
+              Unenroll
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #noEnrolled>
+        <div class="empty-state">
+          <span class="empty-icon">📝</span>
+          <p>You are not currently enrolled in any courses.</p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+
+  <!-- Hierarchical DI Demonstration -->
+  <div class="di-demo-section">
+    <h3>Hierarchical DI Demonstration</h3>
+    <p class="di-demo-desc">
+      Below are two separate instances of the same <code>NotificationComponent</code>. 
+      Because they declare <code>NotificationService</code> inside their component-level <code>providers</code> array, 
+      each component instance receives its own isolated service instance. Adding notifications in one will NOT affect the other.
+    </p>
+    <div class="notifications-container">
+      <app-notification></app-notification>
+      <app-notification></app-notification>
+    </div>
+  </div>
+</div>

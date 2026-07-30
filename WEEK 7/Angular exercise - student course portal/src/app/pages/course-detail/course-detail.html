@@ -1,0 +1,63 @@
+<div class="detail-container">
+  <button class="btn-back" (click)="goBack()">← Back to Courses</button>
+
+  <div *ngIf="course; else notFound" class="detail-card" 
+    [ngStyle]="{ 'border-top': '8px solid ' + (
+      course.gradeStatus === 'passed' ? '#10b981' : 
+      course.gradeStatus === 'failed' ? '#ef4444' : '#64748b'
+    )}"
+  >
+    <div class="card-header">
+      <span class="course-code">{{ course.code }}</span>
+      <span class="badge" [ngClass]="{
+        'badge-passed': course.gradeStatus === 'passed',
+        'badge-failed': course.gradeStatus === 'failed',
+        'badge-pending': course.gradeStatus === 'pending'
+      }">{{ course.gradeStatus | uppercase }}</span>
+    </div>
+
+    <h2 class="course-title">{{ course.name }}</h2>
+    
+    <div class="course-meta">
+      <div class="meta-item">
+        <span class="meta-label">Credits</span>
+        <span class="meta-value">{{ course.credits }} Credits</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Level</span>
+        <span class="meta-value">Undergraduate</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Term</span>
+        <span class="meta-value">Fall / Spring</span>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="course-desc">
+      <h3>Course Overview</h3>
+      <p>
+        This course provides student-centered learning covering both theoretical frameworks and practical exercises.
+        Students will build projects, analyze problems, and gain professional experience aligned with academic standards.
+      </p>
+    </div>
+
+    <div class="detail-actions">
+      <button class="btn btn-enroll" (click)="onEnrollToggle()" [ngClass]="{
+        'btn-danger': enrolled,
+        'btn-primary': !enrolled
+      }">
+        {{ enrolled ? 'Unenroll From Course' : 'Enroll In Course' }}
+      </button>
+    </div>
+  </div>
+
+  <ng-template #notFound>
+    <div class="not-found-card">
+      <h3>Course Not Found</h3>
+      <p>The course with ID #{{ courseId }} could not be located in our academic system.</p>
+      <button class="btn btn-primary" (click)="goBack()">Back to Catalog</button>
+    </div>
+  </ng-template>
+</div>

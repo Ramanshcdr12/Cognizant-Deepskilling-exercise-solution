@@ -1,0 +1,13 @@
+{
+  "courses": [
+    { "id": "1", "name": "Data Structures & Algorithms", "code": "CS101", "credits": 4, "gradeStatus": "passed" },
+    { "id": "2", "name": "Database Management Systems", "code": "CS202", "credits": 3, "gradeStatus": "pending" },
+    { "id": "3", "name": "Software Engineering Design", "code": "CS303", "credits": 3, "gradeStatus": "passed" },
+    { "id": "4", "name": "Web Application Development", "code": "CS404", "credits": 4, "gradeStatus": "pending" },
+    { "id": "5", "name": "Artificial Intelligence Basics", "code": "CS505", "credits": 4, "gradeStatus": "failed" }
+  ],
+  "students": [
+    { "id": "S202642", "name": "Ramansh", "email": "ramansh@college.edu" }
+  ],
+  "enrollments": []
+}

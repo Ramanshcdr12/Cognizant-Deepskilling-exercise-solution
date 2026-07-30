@@ -1,0 +1,76 @@
+<div class="home-container">
+  <!-- Hero Section -->
+  <header class="hero-section">
+    <h1 class="portal-title">{{ portalName }}</h1>
+    <p class="portal-subtitle">Welcome to your academic dashboard. Manage your schedule, view courses, and track your progress in real-time.</p>
+  </header>
+
+  <!-- Stats Grid -->
+  <section class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon">📚</div>
+      <div class="stat-info">
+        <span class="stat-value">{{ coursesCount }}</span>
+        <span class="stat-label">Courses Available</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">✓</div>
+      <div class="stat-info">
+        <span class="stat-value">{{ enrolledCount }}</span>
+        <span class="stat-label">Enrolled Courses</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">⭐</div>
+      <div class="stat-info">
+        <span class="stat-value">3.8</span>
+        <span class="stat-label">Current GPA</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Controls Section -->
+  <section class="interactive-section">
+    <div class="control-card">
+      <h2>Quick Actions</h2>
+      <p class="card-desc">Click below to open course enrollment for this semester.</p>
+      
+      <button class="btn btn-primary" [disabled]="!isPortalActive" (click)="onEnrollClick()">
+        Enroll Now
+      </button>
+
+      <!-- Message displayed on action -->
+      @if (message) {
+        <div class="action-message">
+          <span class="message-icon">ℹ️</span>
+          <span class="message-text">{{ message }}</span>
+        </div>
+      }
+    </div>
+
+    <div class="control-card">
+      <h2>Search Filter</h2>
+      <p class="card-desc">Search for available courses by typing below.</p>
+      
+      <div class="search-box">
+        <input 
+          type="text" 
+          [(ngModel)]="searchTerm" 
+          placeholder="Type course name or code..."
+          class="form-control"
+        />
+      </div>
+
+      @if (searchTerm) {
+        <p class="search-preview">
+          Searching for: <strong>{{ searchTerm }}</strong>
+        </p>
+      } @else {
+        <p class="search-preview placeholder">
+          Enter search term to preview filter...
+        </p>
+      }
+    </div>
+  </section>
+</div>
